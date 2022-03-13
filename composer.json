@@ -1,26 +1,41 @@
 {
-    "name": "matusstafura/fioapi",
-    "description": "Fio API PHP for transaction reports",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Matusstafura\\Fioapi\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Matus Stafura",
-            "email": "kobe21@gmail.com"
-        }
-    ],
-    "require-dev": {
-        "orchestra/testbench": "^7.1",
-        "pestphp/pest": "^1.21"
-    },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
+  "name": "matusstafura/fioapi",
+  "description": "Fio API PHP for transaction reports",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Matusstafura\\FioApi\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Matusstafura\\FioApi\\Tests\\": "tests"
+    }
+  },
+  "authors": [
+    {
+      "name": "Matus Stafura",
+      "email": "kobe21@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "orchestra/testbench": "^7.1",
+    "pestphp/pest": "^1.21"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Matusstafura\\FioApi\\FioReportServiceProvider"
+      ],
+      "aliases": {
+        "FioReport": "Matusstafura\\FioApi\\Facades\\FioReport"
+      }
+    }
+  }
 }
