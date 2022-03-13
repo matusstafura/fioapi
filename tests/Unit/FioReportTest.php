@@ -1,8 +1,5 @@
 <?php
 
-use Matusstafura\FioApi\FioReport;
-
-test('example', function () {
-    $report = new FioReport();
-    dd($report->test());
+test('it gets today date', function () {
+    expect(true)->toBeTrue();
 });
