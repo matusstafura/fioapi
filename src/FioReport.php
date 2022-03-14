@@ -15,7 +15,13 @@ class FioReport
     {
         $url = "$this->url/${date_from}/${date_to}/transactions.json";
 
-        return Http::get($url)->json();
+        $response = Http::get($url);
+
+        if ($response->status() != 200) {
+            throw new \Exception('Could not connect to a bank.');
+        }
+
+        return $response->json();
     }
 
     public function today()
@@ -26,8 +32,8 @@ class FioReport
 
     public function yesterday()
     {
-        $today = Carbon::yesterday()->toDateString();
-        return $this->getReport($today, $today);
+        $yesterday = Carbon::yesterday()->toDateString();
+        return $this->getReport($yesterday, $yesterday);
     }
 
     public function betweenDates($date_from, $date_to)
