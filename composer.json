@@ -1,6 +1,10 @@
 {
   "name": "matusstafura/fioapi",
   "description": "Fio API PHP for transaction reports",
+  "keywords": [
+    "fio",
+    "api"
+  ],
   "type": "library",
   "license": "MIT",
   "autoload": {
@@ -19,6 +23,9 @@
       "email": "kobe21@gmail.com"
     }
   ],
+  "require": {
+    "php": "^8.0"
+  },
   "require-dev": {
     "orchestra/testbench": "^7.1",
     "pestphp/pest": "^1.21",

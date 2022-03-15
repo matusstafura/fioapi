@@ -1,18 +1,18 @@
-# Fio Bank PHP API Wrapper
+# Fio Bank PHP API Wrapper 
 
 ! in development 
 
 Get Fio Bank transaction reports by date in json.
 
-### Create a token
+## Create a token
 
-Log in to your Fio admin area.
-Settings > API > Add new token
+Log in to your Fio admin area:
+Settings > API > Add new token.
 
 ## :rocket: Installation using Composer
 
 ```sh
-composer require 
+composer require matusstafura/fioapi
 ```
 
 ## Laravel

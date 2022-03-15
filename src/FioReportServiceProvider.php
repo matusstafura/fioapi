@@ -10,7 +10,7 @@ class FioReportServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/fio.php' => config_path('fio.php')
-        ], 'fio-config');
+        ], 'fio-report');
     }
 
     public function register()
