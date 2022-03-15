@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
-use Matusstafura\FioApi\Facades\FioReport;
+use Matusstafura\FioApi\FioReport;
 
 it('checks for if response is ok', function () {
     Http::fake([
@@ -15,5 +15,5 @@ it('throws exception if status not 200', function () {
     Http::fake([
         '*' => Http::response('',409)
     ]);
-    FioReport::getReport("2022-03-11","2022-03-11");
+    FioReport::betweenDates("2022-03-11","2022-03-11")->getReport();
 })->throws(Exception::class);

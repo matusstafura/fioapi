@@ -15,11 +15,6 @@ class FioReportServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('fio-report', function() {
-            $url = config('fio.prefixUrl').config('fio.token');
-            return new FioReport($url);
-        });
-
         $this->mergeConfigFrom(__DIR__.'/../config/fio.php', 'fio');
     }
 }

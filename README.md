@@ -17,11 +17,7 @@ composer require
 
 ## Laravel
 
-import as a facade
-```php
-use Matusstafura\FioApi\Facades\FioReport;
-```
-
+config file
 ```shell
 php artisan vendor:publish --tag="fio-report"
 ```
@@ -36,8 +32,16 @@ FIO_TOKEN = "your_api_token"
 ```php
 <?php
 
-FioReport::yesterday();
+use Matusstafura\FioApi\FioReport;
+
+FioReport::yesterday()->getReport();
 // will return transaction from previous day
+
+FioReport::today()->getReport();
+// will return today's transactions
+
+FioReport::betweenDates("2022-02-14", "2022-02-18")->getReport();
+// will return transactions between dates in format YYYY-MM-DD
 
 ```
 

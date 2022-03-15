@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\Http;
 
 class FioReport
 {
-    public function __construct(protected string $url)
+    public function __construct(public string $date_from, public string $date_to)
     {
     }
 
-    public function getReport(string $date_from, string $date_to)
+    public function getReport()
     {
-        $url = "$this->url/${date_from}/${date_to}/transactions.json";
+        $fioApiService = new FioApiService();
+        $url = $fioApiService->baseUrl()."/$this->date_from/$this->date_to/transactions.json";
 
         $response = Http::get($url);
 
@@ -24,20 +25,21 @@ class FioReport
         return $response->json();
     }
 
-    public function today()
+    public static function betweenDates( $date_from, $date_to)
+    {
+        return new static($date_from, $date_to);
+    }
+
+    public static function today()
     {
         $today = Carbon::today()->toDateString();
-        return $this->getReport($today, $today);
+        return new static($today, $today);
     }
 
-    public function yesterday()
+    public static function yesterday(): static
     {
         $yesterday = Carbon::yesterday()->toDateString();
-        return $this->getReport($yesterday, $yesterday);
+        return new static($yesterday, $yesterday);
     }
 
-    public function betweenDates($date_from, $date_to)
-    {
-        return $this->getReport($date_from, $date_to);
-    }
 }

@@ -33,10 +33,7 @@
     "laravel": {
       "providers": [
         "Matusstafura\\FioApi\\FioReportServiceProvider"
-      ],
-      "aliases": {
-        "FioReport": "Matusstafura\\FioApi\\Facades\\FioReport"
-      }
+      ]
     }
   }
 }
