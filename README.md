@@ -1,7 +1,5 @@
 # Fio Bank PHP API Wrapper 
 
-! in development 
-
 Get Fio Bank transaction reports by date in json.
 
 ## Create a token
@@ -17,12 +15,12 @@ composer require matusstafura/fioapi
 
 ## Laravel
 
-config file
+- to publish config file
 ```shell
 php artisan vendor:publish --tag="fio-report"
 ```
 
-Add token in .env
+- add token in .env
 ```shell
 FIO_TOKEN = "your_api_token"
 ```

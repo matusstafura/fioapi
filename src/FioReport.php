@@ -25,12 +25,19 @@ class FioReport
         return $response->json();
     }
 
-    public static function betweenDates( $date_from, $date_to)
+    public static function betweenDates(string $date_from, string $date_to): static
     {
-        return new static($date_from, $date_to);
+        try {
+            $date_from = Carbon::parse($date_from)->format('Y-m-d');
+            $date_to = Carbon::parse($date_to)->format('Y-m-d');
+
+            return new static($date_from, $date_to);
+        } catch (\Exception $e) {
+            throw new \Exception("Invalid input date.");
+        }
     }
 
-    public static function today()
+    public static function today(): static
     {
         $today = Carbon::today()->toDateString();
         return new static($today, $today);
@@ -41,5 +48,12 @@ class FioReport
         $yesterday = Carbon::yesterday()->toDateString();
         return new static($yesterday, $yesterday);
     }
+
+    public function validateDate($date, $format = 'Y-m-d')
+    {
+        $d = Carbon::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
+
 
 }

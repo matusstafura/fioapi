@@ -17,3 +17,10 @@ it('throws exception if status not 200', function () {
     ]);
     FioReport::betweenDates("2022-03-11","2022-03-11")->getReport();
 })->throws(Exception::class);
+
+it('throws exception if incorrect date', function () {
+    Http::fake([
+        '*' => Http::response('',200)
+    ]);
+    FioReport::betweenDates("2000-77-22","2022-03-11")->getReport();
+})->throws(Exception::class);
