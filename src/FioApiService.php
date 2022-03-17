@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Matusstafura\FioApi;
 
-class FioApiService
+final class FioApiService
 {
-    public function baseUrl()
+    public function baseUrl(): string
     {
         return config('fio.prefixUrl').config('fio.token');
     }

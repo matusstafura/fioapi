@@ -20,5 +20,5 @@ return [
     |  Url for API call
     |
     */
-    'prefixUrl' => 'https://www.fio.cz/ib_api/rest/periods/'
+    'prefixUrl' => 'https://www.fio.cz/ib_api/rest/periods/',
 ];

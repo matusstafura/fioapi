@@ -2,6 +2,10 @@
 
 All notable changes to `fioapi` will be documented in this file.
 
+## 0.2.0 - 2022-03-17
+
+- refactor to Facade
+
 ## 0.1.1 - 2022-03-16
 - betweenDates invalid date exception
 

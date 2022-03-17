@@ -30,11 +30,13 @@
     "orchestra/testbench": "^7.1",
     "pestphp/pest": "^1.21",
     "guzzlehttp/guzzle": "^7.0",
-    "spatie/pest-plugin-test-time": "^1.0"
+    "spatie/pest-plugin-test-time": "^1.0",
+    "nunomaduro/phpinsights": "^2.1"
   },
   "config": {
     "allow-plugins": {
-      "pestphp/pest-plugin": true
+      "pestphp/pest-plugin": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "extra": {
