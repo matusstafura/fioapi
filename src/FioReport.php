@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Http;
 
 class FioReport
 {
-    public function __construct(public string $date_from, public string $date_to)
+    public function __construct(protected FioApiService $fioApiService)
     {
     }
 
-    public function getReport()
+    public function getReport($date_from, $date_to)
     {
-        $fioApiService = new FioApiService();
-        $url = $fioApiService->baseUrl()."/$this->date_from/$this->date_to/transactions.json";
+        $url = $this->fioApiService->baseUrl()."/${date_from}/${date_to}/transactions.json";
 
         $response = Http::get($url);
 
@@ -25,35 +24,36 @@ class FioReport
         return $response->json();
     }
 
-    public static function betweenDates(string $date_from, string $date_to): static
+    public function betweenDates(string $date_from, string $date_to)
     {
         try {
             $date_from = Carbon::parse($date_from)->format('Y-m-d');
             $date_to = Carbon::parse($date_to)->format('Y-m-d');
 
-            return new static($date_from, $date_to);
+            return $this->getReport($date_from, $date_to);
         } catch (\Exception $e) {
             throw new \Exception("Invalid input date.");
         }
     }
 
-    public static function today(): static
+    public function today()
     {
-        $today = Carbon::today()->toDateString();
-        return new static($today, $today);
+        return $this->getReport($this->todayDate(), $this->todayDate());
     }
 
-    public static function yesterday(): static
+    public function yesterday()
     {
-        $yesterday = Carbon::yesterday()->toDateString();
-        return new static($yesterday, $yesterday);
+        return $this->getReport($this->yesterdayDate(), $this->yesterdayDate() );
     }
 
-    public function validateDate($date, $format = 'Y-m-d')
+    public function todayDate()
     {
-        $d = Carbon::createFromFormat($format, $date);
-        return $d && $d->format($format) == $date;
+        return Carbon::today()->toDateString();
     }
 
+    public function yesterdayDate()
+    {
+        return Carbon::yesterday()->toDateString();
+    }
 
 }

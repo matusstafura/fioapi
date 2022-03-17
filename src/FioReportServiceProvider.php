@@ -16,5 +16,9 @@ class FioReportServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/fio.php', 'fio');
+
+        $this->app->singleton('fio-report', function () {
+            return new FioReport(new FioApiService());
+        });
     }
 }

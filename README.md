@@ -30,15 +30,15 @@ FIO_TOKEN = "your_api_token"
 ```php
 <?php
 
-use Matusstafura\FioApi\FioReport;
+use Matusstafura\FioApi\Facades\FioReport;
 
-FioReport::yesterday()->getReport();
+FioReport::yesterday();
 // will return transaction from previous day
 
-FioReport::today()->getReport();
+FioReport::today();
 // will return today's transactions
 
-FioReport::betweenDates("2022-02-14", "2022-02-18")->getReport();
+FioReport::betweenDates("2022-02-14", "2022-02-18");
 // will return transactions between dates in format YYYY-MM-DD
 
 ```

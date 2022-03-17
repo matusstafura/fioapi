@@ -29,7 +29,8 @@
   "require-dev": {
     "orchestra/testbench": "^7.1",
     "pestphp/pest": "^1.21",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "spatie/pest-plugin-test-time": "^1.0"
   },
   "config": {
     "allow-plugins": {
@@ -40,7 +41,10 @@
     "laravel": {
       "providers": [
         "Matusstafura\\FioApi\\FioReportServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "FioReport": "Matusstafura\\FioApi\\Facades\\FioReport"
+      }
     }
   }
 }
