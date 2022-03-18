@@ -6,7 +6,7 @@ namespace Matusstafura\FioApi\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-final class FioReport extends Facade
+class FioReport extends Facade
 {
     protected static function getFacadeAccessor()
     {

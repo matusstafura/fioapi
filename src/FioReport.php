@@ -7,7 +7,7 @@ namespace Matusstafura\FioApi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
-final class FioReport
+class FioReport
 {
     public function __construct(protected FioApiService $fioApiService)
     {

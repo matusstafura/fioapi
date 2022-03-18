@@ -3,3 +3,4 @@ vendor
 .idea
 .DS_Store
 .env
+.php-cs-fixer.*
