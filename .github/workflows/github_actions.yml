@@ -13,9 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -30,9 +27,6 @@ jobs:
           ${{ runner.os }}-php-
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-      
-    - name: Generate key
-      run: php artisan key:generate
 
     - name: Execute tests
       run: vendor/bin/pest
