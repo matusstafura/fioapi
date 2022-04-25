@@ -13,7 +13,7 @@ class FioReport
     {
     }
 
-    public function getReport(string $date_from, string $date_to): mixed
+    public function getReport(string $date_from, string $date_to): array
     {
         try {
             $date_from = Carbon::parse($date_from)->format('Y-m-d');
@@ -33,17 +33,17 @@ class FioReport
         }
     }
 
-    public function betweenDates(string $date_from, string $date_to): string
+    public function betweenDates(string $date_from, string $date_to): array
     {
         return $this->getReport($date_from, $date_to);
     }
 
-    public function today(): string
+    public function today(): array
     {
         return $this->getReport($this->todayDate(), $this->todayDate());
     }
 
-    public function yesterday(): string
+    public function yesterday(): array
     {
         return $this->getReport($this->yesterdayDate(), $this->yesterdayDate());
     }
