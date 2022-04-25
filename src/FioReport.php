@@ -13,7 +13,7 @@ class FioReport
     {
     }
 
-    public function getReport(string $date_from, string $date_to): mixed
+    public function getReport(string $date_from, string $date_to): array
     {
         try {
             $date_from = Carbon::parse($date_from)->format('Y-m-d');
@@ -26,14 +26,12 @@ class FioReport
             if ($response->status() !== 200) {
                 throw new \Exception('Could not connect to a bank.');
             }
-
-            return $response->json();
         } catch (\Exception $e) {
             throw new \Exception('Invalid input date.');
         }
     }
 
-    public function betweenDates(string $date_from, string $date_to): string
+    public function betweenDates(string $date_from, string $date_to): array
     {
         return $this->getReport($date_from, $date_to);
     }
