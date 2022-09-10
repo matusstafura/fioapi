@@ -31,7 +31,8 @@
     "pestphp/pest": "^1.21",
     "guzzlehttp/guzzle": "^7.4",
     "spatie/pest-plugin-test-time": "^1.0",
-    "nunomaduro/phpinsights": "^2.1"
+    "nunomaduro/phpinsights": "^2.1",
+    "nunomaduro/larastan": "^2.0"
   },
   "config": {
     "allow-plugins": {
