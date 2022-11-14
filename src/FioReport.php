@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 class FioReport
 {
-    public function __construct(protected FioApiService $fioApiService)
+    public function __construct(protected ApiService $ApiService)
     {
     }
 
@@ -19,7 +19,7 @@ class FioReport
             $date_from = Carbon::parse($date_from)->format('Y-m-d');
             $date_to = Carbon::parse($date_to)->format('Y-m-d');
 
-            $url = $this->fioApiService->baseUrl()."/${date_from}/${date_to}/transactions.json";
+            $url = $this->ApiService->baseUrl()."/${date_from}/${date_to}/transactions.json";
 
             $response = Http::get($url);
 
@@ -29,7 +29,7 @@ class FioReport
 
             return $response->json();
         } catch (\Exception $e) {
-            throw new \Exception('Invalid input date.');
+            throw new \Exception("Error: $e");
         }
     }
 
