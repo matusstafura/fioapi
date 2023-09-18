@@ -2,6 +2,11 @@
 
 All notable changes to `fioapi` will be documented in this file.
 
+## 0.2.9 - 2023-09-18
+
+- refactor
+- composer update
+
 ## 0.2.8 - 2023-04-26
 
 - composer update
