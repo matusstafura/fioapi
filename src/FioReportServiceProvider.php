@@ -20,7 +20,7 @@ final class FioReportServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/fio.php', 'fio');
 
         $this->app->singleton('fio-report', function () {
-            return new FioReport(new FioApiService());
+            return new FioReport(new FioApiService(), new HttpClient());
         });
     }
 }

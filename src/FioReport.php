@@ -5,32 +5,24 @@ declare(strict_types=1);
 namespace Matusstafura\FioApi;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Http;
 
 class FioReport
 {
-    public function __construct(protected ApiService $ApiService)
+    public function __construct(protected ApiService $ApiService, protected HttpClient $HttpClient)
     {
     }
 
     public function getReport(string $date_from, string $date_to): array
     {
-        try {
-            $date_from = Carbon::parse($date_from)->format('Y-m-d');
-            $date_to = Carbon::parse($date_to)->format('Y-m-d');
+        $url = $this->getTransactionsUrl($date_from, $date_to);
+        return $this->HttpClient->get($url);
+    }
 
-            $url = $this->ApiService->baseUrl()."/${date_from}/${date_to}/transactions.json";
-
-            $response = Http::get($url);
-
-            if ($response->status() !== 200) {
-                throw new \Exception('Could not connect to a bank.');
-            }
-
-            return $response->json();
-        } catch (\Exception $e) {
-            throw new \Exception("Error: $e");
-        }
+    public function getTransactionsUrl(string $date_from, string $date_to): string
+    {
+        $date_from = Carbon::parse($date_from)->format('Y-m-d');
+        $date_to = Carbon::parse($date_to)->format('Y-m-d');
+        return $this->ApiService->baseUrl()."/${date_from}/${date_to}/transactions.json";
     }
 
     public function betweenDates(string $date_from, string $date_to): array
