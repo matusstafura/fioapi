@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Matusstafura\FioApi;
 
 use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 
 class FioReport
 {
@@ -20,8 +21,13 @@ class FioReport
 
     public function getTransactionsUrl(string $date_from, string $date_to): string
     {
-        $date_from = Carbon::parse($date_from)->format('Y-m-d');
-        $date_to = Carbon::parse($date_to)->format('Y-m-d');
+        try {
+            $date_from = Carbon::parse($date_from)->format('Y-m-d');
+            $date_to = Carbon::parse($date_to)->format('Y-m-d');
+        } catch (InvalidFormatException $e) {
+            throw new \InvalidArgumentException("Invalid date format: {$e->getMessage()}");
+        }
+
         return $this->ApiService->baseUrl()."/${date_from}/${date_to}/transactions.json";
     }
 
